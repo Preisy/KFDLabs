@@ -1,5 +1,9 @@
 
-
+internal class Node<T>(_data: T) {
+    var left: Node<T>? = null;
+    var right: Node<T>? = null;
+    var data: T = _data;
+}
 class BTree<T : Comparable<T>> {
     private var root: Node<T>? = null;
 
@@ -27,12 +31,6 @@ class BTree<T : Comparable<T>> {
         return false
     }
 
-    fun print() {
-        lnr(root) {
-            print("$it ")
-        }
-        println()
-    }
 
     private fun lnr(node: Node<T>?, callback: (T) -> Unit) {
         if (node == null) return
@@ -42,11 +40,9 @@ class BTree<T : Comparable<T>> {
         lnr(node.right, callback)
     }
 
+    fun lnr(callback: (T) -> Unit) {
+        lnr(root, callback);
+    }
+
 }
 
-
-internal class Node<T>(_data: T) {
-    var left: Node<T>? = null;
-    var right: Node<T>? = null;
-    var data: T = _data;
-}
